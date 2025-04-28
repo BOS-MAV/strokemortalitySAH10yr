@@ -202,7 +202,7 @@ $(document).ready(function () {
                                         else
                                         {
                                             $("#hyperMark").tooltip("hide");
-                                            if (($("input[name = 'TBI']:checked").val() !== 'Yes') && ($("input[name = 'TBI']:checked").val() !== 'No'))
+                                            if (($("input[name = 'TBIR']:checked").val() !== 'Yes') && ($("input[name = 'TBIR']:checked").val() !== 'No'))
                                             {
                                                 $("#TBIMark").tooltip("show");
                                                 $("#TBI").focus();
