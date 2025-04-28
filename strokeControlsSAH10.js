@@ -109,7 +109,7 @@ $(document).ready(function () {
         return ($("input[name='Hypertension']:checked").val() === 'Yes' || $("input[name='Hypertension']:checked").val() === 'No');
     }
     function TBI_Val() {
-        return ($("input[name='TBI']:checked").val() === 'Yes' || $("input[name='TBI']:checked").val() === 'No');
+        return ($("input[name='TBIR']:checked").val() === 'Yes' || $("input[name='TBIR']:checked").val() === 'No');
     }
     function priorKid_Val() {
         return ($("input[name='priorKid']:checked").val() === 'Yes' || $("input[name='priorKid']:checked").val() === 'No');
@@ -671,36 +671,43 @@ function BP_Dia_Val(finalChk) {
 }
 
 
-function BMI_Val() {
+function BMI_Val() 
+{
     var input = $("#BMI");
     if (BMIFirst)
     {
         BMIFirst = false;
         return true;
     }
-
-    if (parseFloat(input.val()) < 12 || parseFloat(input.val()) > 49 || input.val() === "")
-    {
-
-        if (BMIToolTipOn === 1)
+    if (enforceOneDigitTwoDecimal(input.val()) != input.val())
         {
-            $("#BMI").tooltip("show");
-            $("#BMI").removeClass("valid").addClass("invalid");
-            $("#myForm input").prop("disabled",true);
-            $("#myForm button").prop("disabled",true);
-            $("#BMI").prop("disabled",false); 
-            $("#BMI").focus();
-            BMIToolTipOn = 0;            
+            $("#creat").val(enforceOneDigitTwoDecimal(input.val()));
         }
-        return false;
-    }
     else
-    {
-        $("#BMI").tooltip("hide");
-        $("#BMI").removeClass("invalid").addClass("valid");
-        $("#myForm input").prop("disabled",false);
-        $("#myForm button").prop("disabled",false);
-        return true;
+        {
+            if (parseFloat(input.val()) < 12 || parseFloat(input.val()) > 49 )
+            {
+
+                if (BMIToolTipOn === 1)
+                {
+                    $("#BMI").tooltip("show");
+                    $("#BMI").removeClass("valid").addClass("invalid");
+                    $("#myForm input").prop("disabled",true);
+                    $("#myForm button").prop("disabled",true);
+                    $("#BMI").prop("disabled",false); 
+                    $("#BMI").focus();
+                    BMIToolTipOn = 0;            
+                }
+                return false;
+            }
+            else
+            {
+                $("#BMI").tooltip("hide");
+                $("#BMI").removeClass("invalid").addClass("valid");
+                $("#myForm input").prop("disabled",false);
+                $("#myForm button").prop("disabled",false);
+                return true;
+            }
+        }
     }
-}
 })

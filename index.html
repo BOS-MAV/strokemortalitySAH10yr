@@ -134,7 +134,7 @@
                             </div>
                             <div class ="col-sm-3 col-med-3 col-lg-2">
                                 <div class="btn-group colors" data-toggle="buttons" id ="TBI" >
-                                    <label class = "topLabel"><br/>TBI?</label>
+                                    <label class = "topLabel"><br/><br/>TBI?</label>
                                     <div style="clear: both;"></div>
                                     <label class="btn btn-primary btn-sm" id = "TBIMark"> 
                                         <span class = "glyphicon glyphicon-check" id = "TBIYGlyph" style="display:none"></span>
@@ -208,7 +208,7 @@
                                     <label class = "topLabel1"><br/>BMI</label>
                                     <div style="clear: both;"></div>
                                     <label class="btn text-input">
-                                        <input type = "text" id = "BMI" size = "4" maxlength ="3" oninput="this.value=this.value.replace(/[^0-9]/g,'');"  />
+                                        <input type = "text" id = "BMI" size = "4" maxlength ="4" oninput="this.value = this.value.replace(/[^\d.]/g, '');" />
                                     </label>
                                 </div>
                             </div>
