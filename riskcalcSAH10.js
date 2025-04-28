@@ -154,8 +154,6 @@ function calc_risk() {
                 
                 xbeta = ageWeight +  hospLengthWeight + diabetesWeight + dementiaWeight + bpmedsWeight+
                         TBIWeight+priorKidWeight+priorHFWeight+bpSysWeight+bpDiaWeight+BMIWeight;
-                console.log(creatWeight);
-                console.log(ageWeight);
                 //eXbeta = Math.exp(xbeta-2.93853);
                 eXbeta = Math.exp(xbeta);
                 //calculate risk and put in array
