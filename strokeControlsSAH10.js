@@ -137,13 +137,13 @@ $(document).ready(function () {
                 priorHF_Val() &&
                 BP_Sys_Val(true) &&
                 BP_Dia_Val(true) &&
-                BMI_Val()) 
+                BMI_Val(true)) 
                 {
             event.preventDefault();
             var risk_res = [];
             risk_res = calc_risk();
-            $('#message').html('1-2 year survival probability ' + risk_res[0]+"%<br/>1-5 year survival probability "+risk_res[1]+"%<br/>6 month risk "+risk_res[2]+
-                "%</br>1-10 year survival probability "+risk_res[3]+"%");
+            $('#message').html('1-2 year survival probability ' + risk_res[0]+"%<br/>1-5 year survival probability "+risk_res[1]+
+                "%</br>1-10 year survival probability "+risk_res[2]]+"%");
             //$('#message').html('Results ' + calc_risk()+"%");
             $('#myModal').modal('show');
         }
@@ -248,7 +248,7 @@ $(document).ready(function () {
                                                                 $("#BP_Dia").tooltip("hide");
                                                                 BP_DiaToolTipOn = 1;
                                                                
-                                                                        if (!(BMI_Val()))
+                                                                        if (!(BMI_Val(true)))
                                                                         {       
                                                                             $("#BMI").tooltip("show");
                                                                             $("#BMI").focus().select();
@@ -319,7 +319,7 @@ $("#BP_Dia").blur(function () {
 
 
 $("#BMI").blur(function () {
-    if (BMI_Val())
+    if (BMI_Val(false))
     {
         BMIToolTipOn = 1;
     }
@@ -671,17 +671,16 @@ function BP_Dia_Val(finalChk) {
 }
 
 
-function BMI_Val() 
+function BMI_Val(finalChk) 
 {
     var input = $("#BMI");
-    if (BMIFirst)
-    {
-        BMIFirst = false;
-        return true;
-    }
+    if (input.val() === ''  && !finalChk)
+        {
+            return false;
+        }
     if (enforceOneDigitTwoDecimal(input.val()) != input.val())
         {
-            $("#creat").val(enforceOneDigitTwoDecimal(input.val()));
+            $("#BMI").val(enforceOneDigitTwoDecimal(input.val()));
         }
     else
         {
