@@ -45,6 +45,24 @@ function enforceOneDigitTwoDecimal(input) {
     return '';
   }
 
+//similar function except for two digit (like BMI)
+function enforceTwoDigitTwoDecimal(input) {
+    input = input.replace("/[^\d.]/g", '');
+    const parts = input.split('.');
+    if (parts.length > 3) {
+      input = parts[0] + parts[1]+ '.' + parts.slice(1).join('').replace(/\./g, '');
+    }
+  
+    const match = input.match(/^(\d{2})?(?:\.(\d{0,2})?)?/);
+    if (match) {
+      const before = match[1] || '';
+      const after = match[2] || '';
+      return before + (after !== '' ? '.' + after : '');
+    }
+  
+    return '';
+  }
+
 $(function () {
     $(".controlgroup").controlgroup();
     $(".controlgroup-vertical").controlgroup({
@@ -143,7 +161,7 @@ $(document).ready(function () {
             var risk_res = [];
             risk_res = calc_risk();
             $('#message').html('1-2 year survival probability ' + risk_res[0]+"%<br/>1-5 year survival probability "+risk_res[1]+
-                "%</br>1-10 year survival probability "+risk_res[2]]+"%");
+                "%</br>1-10 year survival probability "+risk_res[2]+"%");
             //$('#message').html('Results ' + calc_risk()+"%");
             $('#myModal').modal('show');
         }
@@ -678,9 +696,9 @@ function BMI_Val(finalChk)
         {
             return false;
         }
-    if (enforceOneDigitTwoDecimal(input.val()) != input.val())
+    if (enforceTwoDigitTwoDecimal(input.val()) != input.val())
         {
-            $("#BMI").val(enforceOneDigitTwoDecimal(input.val()));
+            $("#BMI").val(enforceTwoDigitTwoDecimal(input.val()));
         }
     else
         {
