@@ -15,7 +15,7 @@
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"  ></script>
   <script src="strokeControlsSAH10.js"></script>
  <script src="riskcalcSAH10.js" defer></script>
- <script src="loadAvgArray_dynamic.js"> defer </script>
+ <script src="loadAvgArray_dynamicSAH10.js"> defer </script>
     </head>
     <body >
         <form id ="myForm" >
@@ -37,7 +37,39 @@
                                     </label>
                                 </div>
                             </div>
-                           
+                            <div class = "col-sm-3 col-med-2 col-lg-2">
+                                <div class="btn-group colors" data-toggle="buttons" id = "sex">
+                                    <label class ="topLabel">Sex</label>
+                                    <div style="clear: both;"></div>
+                                    <label class="btn btn-primary btn-xsm glyphicon" id = "sexMark"> 
+                                        <span class = "glyphicon glyphicon-check" id = "maleGlyph" style="display:none"></span>
+                                        <input type="radio" name="Sex" value="Male" required  > Male
+                                    </label>
+                                    <label class="btn btn-primary btn-xsm glyphicon" id= "sexMark1">
+                                        <span class = "glyphicon glyphicon-check" id = "femaleGlyph" style="display:none"></span>
+                                        <input type="radio" name="Sex" value="Female" required> Female
+                                    </label>
+                                </div>
+                            </div>
+          
+                            <div class = "col-sm-3 col-med-3 col-lg-4">
+                                <div class="btn-group colors" data-toggle="buttons" id = "race">
+                                    <label class ="topLabel">Race</label>
+                                    <div style="clear: both;"></div>
+                                    <label class="btn btn-primary btn-xsm" id="raceMark"> 
+                                        <span class = "glyphicon glyphicon-check" id = "whiteGlyph" style="display:none"></span>
+                                        <input type="radio" name="Race" value="White" required> White
+                                    </label>
+                                    <label class="btn btn-primary btn-xsm" id = "raceMark1">
+                                        <span class = "glyphicon glyphicon-check" id = "afrAmGlyph" style="display:none"></span>
+                                        <input type="radio" name="Race" value="Black" required> African American
+                                    </label>
+                                    <label class="btn btn-primary btn-xsm" id = "raceMark2">
+                                        <span class = "glyphicon glyphicon-check" id = "otherRaceGlyph" style="display:none"></span>
+                                        <input type="radio" name="Race" value="Other" required> Other
+                                    </label>
+                                 </div>
+                            </div>  
                         </div>    
                         
                     </div>

@@ -17,6 +17,8 @@ var hyperToolTipOn = 1;
 var TBIToolTipOn = 1;
 var priorKidToolTipOn = 1;
 var priorHFToolTipOn = 1;
+var sexToolTipOn = 1;
+var raceToolTipOn = 1;
 
 // variables to flag when a field has not been entered into yet
 var txtHospFirst = true;
@@ -78,6 +80,8 @@ $(document).ready(function () {
     //create tooltips
 
     $("#txtAge").tooltip({title: "Please enter an age of 18 or greater", placement: "bottom", trigger: "manual"});
+    $("#sexMark").tooltip({title: "Please choose either Male or Female", placement: "bottom", trigger: "manual"});
+    $("#raceMark").tooltip({title: "Please choose White, African American or Other", placement: "bottom", trigger: "manual"});
     $("#txtHosp").tooltip({title: "Please enter a value between 1 and 365", placement: "bottom", trigger: "manual"});
     $("#diabMark").tooltip({title: "Please choose either yes or no",placement: "bottom", trigger: "manual"});
     $("#dementMark").tooltip({title: "Please choose either yes or no",placement:"bottom",trigger:"manual"});
@@ -88,6 +92,12 @@ $(document).ready(function () {
     $("#BP_Sys").tooltip({title: "Please enter a systolic blood pressure between 80 and 300 mm HG, leave blank if you do not have a value", placement: "right", trigger: "manual"});
     $("#BP_Dia").tooltip({title: "Please enter a diastolic blood pressure between 50 and 180 mm HG, leave blank if you do not have a value", placement: "right", trigger: "manual"});
     $("#BMI").tooltip({title: "Please enter a BMI between 12 and 60,leave blank if you do not have a value", placement: "bottom", trigger: "manual"});
+    function sex_Val() {
+        return ($("input[name='Sex']:checked").val() === 'Male' || $("input[name='Sex']:checked").val() === 'Female');
+    }
+    function race_Val() {
+        const race = $("input[name='Race']:checked").val();
+        return (race === 'White' || race === 'Black' || race === 'Hisp' || race === 'Other');
     function diabetes_Val() {
         return ($("input[name='Diabetes']:checked").val() === 'Yes' || $("input[name='Diabetes']:checked").val() === 'No');
     }
@@ -115,6 +125,8 @@ $(document).ready(function () {
         //if ((isvalidate) && txtAge_Val() && txtHosp_Val() && BP_Sys_Val() && BP_Dia_Val() && totChol_Val() && creat_Val() && BMI_Val()) {
             if (isvalidate &&
                 txtAge_Val() &&
+                sex_Val() &&
+                race_Val() &&
                 txtHosp_Val() &&
                 diabetes_Val() &&
                 dementia_Val() &&
@@ -142,10 +154,23 @@ $(document).ready(function () {
             {
                 txtAgeToolTipOn = 1;
                 $("#txtAge").tooltip("hide");
-            }
+                if (($("input[name = 'Sex']:checked").val() !== 'Male') && ($("input[name = 'Sex']:checked").val() !== 'Female'))
+                    {
+                        $("#sexMark").tooltip("show");
+                        $("#sex").focus();
+                    }
+                    else
+                    {
+                        $("#sexMark").tooltip("hide");
+                        if (($("input[name = 'Race']:checked").val() != 'White') && ($("input[name = 'Race']:checked").val() != 'Black')
+                                && ($("input[name = 'Race']:checked").val() != 'Hisp') && ($("input[name = 'Race']:checked").val() != 'Other'))
+                        {
+                            $("#raceMark").tooltip("show");
+                            $("#race").focus();
+                        }
 
                         else
-   
+                        $("#raceMark").tooltip("hide");
                                 if (txtHosp_Val())
                                 {
                                     
@@ -241,10 +266,8 @@ $(document).ready(function () {
                                         }
                                     }
                                 }
-                            }
-                        
-   
-    );
+                            }}                                             
+      }  );
     $('#BP_Sys').on('keydown', function (e) {
         if (e.key === 'Enter') {
             e.preventDefault();
@@ -300,7 +323,61 @@ $("#BMI").blur(function () {
         BMIToolTipOn = 1;
     }
 });
+$("input[name='Sex']").change(function () {
+    $("#sexMark").tooltip("hide");
+    if ($("input[name='Sex']:checked").val()==="Male")
+    {
+        $("#sexMark").addClass("btn-selected");
+        $("#maleGlyph").show();
+        $("#femaleGlyph").hide();            
+        $("#sexMark1").removeClass("btn-selected");
+    }
+    else
+    {
+        
+        $("#sexMark1").addClass("btn-selected");
+        $("#femaleGlyph").show();
+        $("#maleGlyph").hide();
+        $("#sexMark").removeClass("btn-selected");
+    }
+    $("#race").focus();
+});
 
+$("input[name='Race']").change(function () {
+    $("#raceMark").tooltip("hide");
+    if ($("input[name='Race']:checked").val()==="White")
+    {
+        $("#raceMark").addClass("btn-selected");
+        $("#whiteGlyph").show();
+        $("#afrAmGlyph").hide();  
+        $("#otherRaceGlyph").hide();          
+        $("#raceMark1").removeClass("btn-selected");
+        $("#raceMark2").removeClass("btn-selected");
+    }
+    else if ($("input[name='Race']:checked").val()==="Black")
+    {
+        
+        $("#raceMark1").addClass("btn-selected");
+        $("#afrAmGlyph").show();
+        $("#whiteGlyph").hide();
+        $("#otherRaceGlyph").hide();     
+        $("#raceMark").removeClass("btn-selected");
+        $("#raceMark2").removeClass("btn-selected");
+    }
+    else
+    {
+         
+        $("#raceMark2").addClass("btn-selected");
+        $("#otherRaceGlyph").show();
+        $("#whiteGlyph").hide();
+        $("#afrAmGlyph").hide();  
+        $("#raceMark").removeClass("btn-selected");
+        $("#raceMark1").removeClass("btn-selected");
+    }
+    setTimeout(function () {
+        $("#txtHosp").focus().select();
+    }, 100);
+});
     $("input[name='Diabetes']").change(function () {
         $("#diabMark").tooltip("hide");
         if ($("input[name='Diabetes']:checked").val()==="Yes")
