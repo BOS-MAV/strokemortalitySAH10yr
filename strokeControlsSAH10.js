@@ -98,6 +98,7 @@ $(document).ready(function () {
     function race_Val() {
         const race = $("input[name='Race']:checked").val();
         return (race === 'White' || race === 'Black' || race === 'Hisp' || race === 'Other');
+    }
     function diabetes_Val() {
         return ($("input[name='Diabetes']:checked").val() === 'Yes' || $("input[name='Diabetes']:checked").val() === 'No');
     }
@@ -702,3 +703,4 @@ function BMI_Val() {
         return true;
     }
 }
+})
