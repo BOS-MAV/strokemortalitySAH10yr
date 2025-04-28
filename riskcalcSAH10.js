@@ -9,7 +9,7 @@ function calc_risk() {
                 //declare a totscore variable
                var totScore;
                 //declare variables to hold the rest
-                var age,ageCat,ageWeight, diabetes, diabetesWeight, 
+                var age,ageCat,sex_t,race_t,ageWeight, diabetes, diabetesWeight, 
                     dementia, dementiaWeight, bpmeds, bpmedsWeight, TBI, TBIWeight, systolic,
                     systolicWeight,diastolic, diastolicWeight, priorKid,priorKidWeight,
                     priorHF,priorHFWeight,BMI,BMIWeight,hospLength,hospLengthWeight, marker;
@@ -41,6 +41,8 @@ function calc_risk() {
                     ageWeight = 0.879195;
                     ageCat = 5;
                 }
+                sex_t=$("input[name = 'Sex']:checked").val();
+                race_t = $("input[name = 'Race']:checked").val();
                //length of hospitilization
                 hospLength = parseInt($("#txtHosp").val());
                 //determine weights based on cat
