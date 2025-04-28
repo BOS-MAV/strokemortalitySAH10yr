@@ -4,7 +4,7 @@
             "name": "Launch Chrome",
             "request": "launch",
             "type": "chrome",
-            "url": "file:///C:/Users/jruss/Dropbox/vacalcs/strokemortality/strokemortalitySAH1yr/index.html",
+            "url": "file:///C:/Users/jruss/Dropbox/vacalcs/strokemortality/strokemortalitySAH10yr/index.html",
             "webRoot": "${workspaceFolder}"
         }
 
