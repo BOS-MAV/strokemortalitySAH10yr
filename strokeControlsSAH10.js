@@ -542,7 +542,7 @@ $("input[name='Race']").change(function () {
     });
 
     
-});
+
 
 function txtAge_Val() {
         var input = $("#txtAge");
