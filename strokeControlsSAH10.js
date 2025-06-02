@@ -160,8 +160,9 @@ $(document).ready(function () {
             event.preventDefault();
             var risk_res = [];
             risk_res = calc_risk();
-            $('#message').html('1-2 year survival probability ' + risk_res[0]+"%<br/>1-5 year survival probability "+risk_res[1]+
-                "%</br>1-10 year survival probability "+risk_res[2]+"%");
+            $('#message').html('&nbsp;1-2 year survival probability = '+ risk_res[0]+
+                "%<br/>&nbsp;1-5 year survival probability = "+risk_res[1]+
+                "%</br>1-10 year survival probability = "+risk_res[2]+"%");
             //$('#message').html('Results ' + calc_risk()+"%");
             $('#myModal').modal('show');
         }

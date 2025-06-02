@@ -160,9 +160,9 @@ function calc_risk() {
                 console.log(xbeta);
                 console.log(eXbeta);
                 //risk = 1 - Math.pow(0.98731,eXbeta);
-                risk[0] = numberFormat(Math.pow(0.9597258,eXbeta)*100,2);
-                risk[1] = numberFormat(Math.pow(0.8754017,eXbeta)*100,2);
-                risk[2] = numberFormat(Math.pow(0.687694,eXbeta)*100,2);
+                risk[0] = numberFormat(Math.pow(0.9597258,eXbeta)*100,0);
+                risk[1] = numberFormat(Math.pow(0.8754017,eXbeta)*100,0);
+                risk[2] = numberFormat(Math.pow(0.687694,eXbeta)*100,0);
                 //
                 return risk;
                 }   
