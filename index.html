@@ -18,7 +18,7 @@
  <script src="loadAvgArray_dynamicSAH10.js"> defer </script>
  <script src="jquery.disable-autofill.js"></script>
 <script>
-  $('input[autofill="off"]').disableAutofill();
+  //$('input[autofill="off"]').disableautofill();
 </script>
     </head>
     <body >
@@ -74,6 +74,19 @@
                                     </label>
                                  </div>
                             </div>  
+                                    <div class = "col-sm-3 col-med-3 col-lg-4 >
+                                    <div class="btn-group colors" data-toggle="buttons" id = "ethn">
+                                    <label class ="topLabel">Ethnicity</label>
+                                    <div style="clear: both;"></div>
+                                    <label class="btn btn-primary btn-xsm" id="ethnMark"> 
+                                        <span class = "glyphicon glyphicon-check" id = "nhspGlyph" style="display:none"></span>
+                                        <input type="radio" name="Ethnicity" value="nhisp" required> Not Hispanic or Latino
+                                    </label>
+                                    <label class="btn btn-primary btn-xsm" id = "ethnMark1">
+                                        <span class = "glyphicon glyphicon-check" id = "hspGlyph" style="display:none"></span>
+                                        <input type="radio" name="Ethnicity" value="hisp" required> Hispanic or Latino
+                                    </label>
+                                </div>
                         </div>    
                 </div>
                     <div class="well well-sm">
@@ -180,7 +193,6 @@
                                     </label>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                     <div class="well well-sm">

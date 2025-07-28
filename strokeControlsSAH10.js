@@ -19,6 +19,7 @@ var priorKidToolTipOn = 1;
 var priorHFToolTipOn = 1;
 var sexToolTipOn = 1;
 var raceToolTipOn = 1;
+var ethnToolTipOn = 1;
 
 // variables to flag when a field has not been entered into yet
 var txtHospFirst = true;
@@ -148,6 +149,13 @@ $(document).ready(function () {
     placement: "bottom",
     trigger: "manual",
   });
+
+  $("#ethnMark").tooltip({
+    title: "Please choose either yes or no",
+    placement: "bottom",
+    trigger: "manual",
+  });
+
   $("#BP_Sys").tooltip({
     title:
       "Please enter a systolic blood pressure between 80 and 300 mm HG, leave blank if you do not have a value",
@@ -172,6 +180,13 @@ $(document).ready(function () {
     placement: "bottom",
     trigger: "hover",
   });
+
+  function ethnicity_Val() {
+    return (
+      $("input[name='Ethnicity']:checked").val() === "nhisp" ||
+      $("input[name='Ethnicity']:checked").val() === "hisp"
+    );
+  }
   function sex_Val() {
     return (
       $("input[name='Sex']:checked").val() === "Male" ||
@@ -180,12 +195,7 @@ $(document).ready(function () {
   }
   function race_Val() {
     const race = $("input[name='Race']:checked").val();
-    return (
-      race === "White" ||
-      race === "Black" ||
-      race === "Hisp" ||
-      race === "Other"
-    );
+    return race === "White" || race === "Black" || race === "Other";
   }
   function diabetes_Val() {
     return (
@@ -224,6 +234,13 @@ $(document).ready(function () {
     );
   }
 
+  function ethn_Val() {
+    return (
+      $("input[name='ethn']:checked").val() === "Yes" ||
+      $("input[name='ethn']:checked").val() === "No"
+    );
+  }
+
   //submit onclick handler
 
   $("#sub").on("click", function (event) {
@@ -235,6 +252,7 @@ $(document).ready(function () {
       txtAge_Val() &&
       sex_Val() &&
       race_Val() &&
+      ethnicity_Val() &&
       txtHosp_Val() &&
       diabetes_Val() &&
       dementia_Val() &&
@@ -244,7 +262,8 @@ $(document).ready(function () {
       priorHF_Val() &&
       BP_Sys_Val(true) &&
       BP_Dia_Val(true) &&
-      BMI_Val(true)
+      BMI_Val(true) &&
+      ethn_Val()
     ) {
       event.preventDefault();
       var risk_res = [];
@@ -286,6 +305,17 @@ $(document).ready(function () {
             $("#raceMark").tooltip("hide");
             $("#raceMark2").tooltip("hide");
           }
+          if (
+            $("input[name = 'Ethnicity']:checked").val() !== "nhisp" &&
+            $("input[name = 'Ethnicity']:checked").val() !== "hisp"
+          ) {
+            $("#ethnMark").tooltip("show");
+            $("#ethn").focus();
+          } else {
+            $("#ethnMark").tooltip("hide");
+            $("#ethnMark2").tooltip("hide");
+          }
+          $("#ethn").focus();
           if (txtHosp_Val()) {
             if (
               $("input[name = 'Diabetes']:checked").val() !== "Yes" &&
@@ -460,8 +490,24 @@ $(document).ready(function () {
       $("#raceMark1").removeClass("btn-selected");
     }
     setTimeout(function () {
-      $("#txtHosp").focus().select();
+      $("#ethn").focus().select();
     }, 100);
+  });
+
+  $("input[name='Ethnicity']").change(function () {
+    $("#ethnMark").tooltip("hide");
+    if ($("input[name='Ethnicity']:checked").val() === "nhisp") {
+      $("#ethnMark").addClass("btn-selected");
+      $("#nhspGlyph").show();
+      $("#hspGlyph").hide();
+      $("#ethnMark1").removeClass("btn-selected");
+    } else {
+      $("#ethnMark1").addClass("btn-selected");
+      $("#hspGlyph").show();
+      $("#nhspGlyph").hide();
+      $("#ethnMark").removeClass("btn-selected");
+    }
+    $("#txtHosp").focus().select();
   });
   $("input[name='Diabetes']").change(function () {
     $("#diabMark").tooltip("hide");
