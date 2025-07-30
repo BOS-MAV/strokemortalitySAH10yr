@@ -236,8 +236,8 @@ $(document).ready(function () {
 
   function ethn_Val() {
     return (
-      $("input[name='ethn']:checked").val() === "Yes" ||
-      $("input[name='ethn']:checked").val() === "No"
+      $("input[name='Ethnicity']:checked").val() === "hisp" ||
+      $("input[name='Ethnicity']:checked").val() === "nhisp"
     );
   }
 
@@ -265,6 +265,7 @@ $(document).ready(function () {
       BMI_Val(true) &&
       ethn_Val()
     ) {
+      $("#BP_Dia").blur();
       event.preventDefault();
       var risk_res = [];
       risk_res = calc_risk();
